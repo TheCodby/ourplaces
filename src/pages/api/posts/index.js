@@ -1,4 +1,5 @@
 const ITEMS_PER_PAGE = 10;
+import prisma from "@/backend/utils/prisma";
 export default async function handler(req, res) {
   if (req.method !== "GET") {
     return res
