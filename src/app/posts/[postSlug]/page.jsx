@@ -3,7 +3,9 @@ import prisma from "@/backend/utils/prisma";
 import { notFound } from "next/navigation";
 import ImagesList from "./images-list";
 async function getPost(postSlug) {
-  const res = await fetch(`http://127.0.0.1:3000/api/posts/${postSlug}`);
+  const res = await fetch(
+    `https://our-places.vercel.app/api/posts/${postSlug}`
+  );
   if (!res.ok) return undefined;
   return res.json();
 }
