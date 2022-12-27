@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  html,
+  body {
+    font-family: "Inter", sans-serif;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+  }
+  main {
+    min-height: 100vh;
+  }
+}
+@layer components {
+  input {
+    @apply bg-gray-100;
+    @apply transition;
+    @apply duration-150;
+    @apply outline-none;
+    @apply p-2;
+    @apply rounded-md;
+    @apply hover:bg-gray-200;
+    @apply focus:bg-gray-300;
+  }
+  textarea {
+    @apply bg-gray-100;
+    @apply transition;
+    @apply duration-150;
+    @apply outline-none;
+    @apply p-2;
+    @apply rounded-md;
+    @apply hover:bg-gray-200;
+    @apply focus:bg-gray-300;
+  }
+  .switches-list {
+    grid-template-columns: min-content minmax(0%, 100%);
+  }
+  .emerald-button {
+    @apply rounded-full;
+    @apply bg-emerald-600;
+    @apply transition duration-200;
+    @apply text-white;
+    @apply py-2;
+    @apply px-5;
+    @apply inline-flex;
+    @apply items-center;
+    @apply justify-center;
+    @apply text-base;
+  }
+  .emerald-button:hover:not([disabled]) {
+    @apply bg-emerald-700;
+  }
+}

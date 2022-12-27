@@ -1,0 +1,78 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id  String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId             String @db.ObjectId
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?  @db.String
+  access_token       String?  @db.String
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?  @db.String
+  session_state      String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id  String  @id @default(auto()) @map("_id") @db.ObjectId
+  sessionToken String   @unique
+  userId       String @db.ObjectId
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id  String  @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  settings      Settings[]
+  posts      Posts[]
+}
+
+model Settings {
+  id  String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId  String @db.ObjectId
+  key       Setting_Key
+  value       Boolean
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@unique([userId, key])
+}
+model Posts {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  userId  String @db.ObjectId
+  title String @db.String
+  slug String @unique @db.String
+  description String @db.String
+  images Uploads[]
+  views Int @default(0)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+model Uploads{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  key String
+  postId String? @db.ObjectId
+  post Posts? @relation(fields: [postId], references: [id], onDelete: Cascade)
+}
+enum Setting_Key {
+  interests_email
+  news_email
+}
