@@ -23,7 +23,7 @@ const toBase64 = (str) =>
   typeof window === "undefined"
     ? Buffer.from(str).toString("base64")
     : window.btoa(str);
-export default function page() {
+export default function Page() {
   const queryClient = useQueryClient();
   const [loading, setLoading] = useState(false);
   const [allLoaded, setAllLoaded] = useState(false);
