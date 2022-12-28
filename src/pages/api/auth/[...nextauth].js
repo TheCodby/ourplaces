@@ -34,6 +34,20 @@ export const authOptions = {
       session.userId = token.sub;
       return session;
     },
+    async signIn({ user, account, profile }) {
+      if (user.image !== profile.image_url) {
+        await prisma.User.update({
+          where: {
+            id: user.id,
+          },
+          data: {
+            image: profile.image_url,
+          },
+        });
+      }
+      user.image = profile.image_url;
+      return true;
+    },
   },
   secret: process.env.NEXTAUTH_SECRET,
   session: { strategy: "jwt" },
