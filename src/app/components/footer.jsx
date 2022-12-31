@@ -8,10 +8,16 @@ export default function Footer() {
           Created by <span className="text-emerald-800">Codby</span>
         </Link>
         <div className="flex space-x-5">
-          <Link href="/" className="text-md hover:text-neutral-700">
+          <Link
+            href="/terms-conditions"
+            className="text-md hover:text-neutral-700"
+          >
             Terms of Service
           </Link>
-          <Link href="/" className="text-md hover:text-neutral-700">
+          <Link
+            href="/privacy-policy"
+            className="text-md hover:text-neutral-700"
+          >
             Privacy Policy
           </Link>
         </div>

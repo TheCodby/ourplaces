@@ -22,6 +22,7 @@ export default async function handler(req, res) {
     },
     include: {
       images: true,
+      user: true,
     },
   });
   return res.status(200).json(posts);

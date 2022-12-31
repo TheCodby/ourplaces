@@ -12,6 +12,7 @@ export default async function handler(req, res) {
     },
     include: {
       images: true,
+      user: true,
     },
   });
   if (post) {

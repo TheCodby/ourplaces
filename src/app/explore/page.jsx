@@ -110,7 +110,8 @@ export default function Page() {
                 </h1>
                 <div className="mt">
                   <span className="text-gray-300 text-sm">
-                    By <span className="text-emerald-400">TheEleventh</span>
+                    By{" "}
+                    <span className="text-emerald-400">{post.user.name}</span>
                   </span>
                 </div>
                 <hr className="my-3" />
