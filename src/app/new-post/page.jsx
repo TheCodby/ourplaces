@@ -7,6 +7,7 @@ import { MdCloudUpload } from "react-icons/md";
 import { Fragment, useReducer, useState } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
+import { TagsInput } from "react-tag-input-component";
 const allowedMimes = ["image/jpeg", "image/png"];
 function reducer(state, action) {
   switch (action.type) {
@@ -22,6 +23,7 @@ export default function NewPostPage() {
   const { status } = useSession({ required: true });
   const [images, dispatch] = useReducer(reducer, []);
   const [tempImages, setTempImages] = useState([]);
+  const [tags, setTags] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
