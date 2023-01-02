@@ -7,7 +7,7 @@ import { MdCloudUpload } from "react-icons/md";
 import { Fragment, useReducer, useState } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
-import { TagsInput } from "react-tag-input-component";
+import TagsInput from "../components/TagsInput";
 const allowedMimes = ["image/jpeg", "image/png"];
 function reducer(state, action) {
   switch (action.type) {
@@ -20,10 +20,10 @@ function reducer(state, action) {
   }
 }
 export default function NewPostPage() {
+  const [tags, setTags] = useState([]);
   const { status } = useSession({ required: true });
   const [images, dispatch] = useReducer(reducer, []);
   const [tempImages, setTempImages] = useState([]);
-  const [tags, setTags] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -91,6 +91,7 @@ export default function NewPostPage() {
       body: JSON.stringify({
         title: title,
         description: description,
+        tags: tags,
         images: images.map((image) => {
           return image.key;
         }),
@@ -235,6 +236,7 @@ export default function NewPostPage() {
                       }}
                       value={title}
                     />
+                    <TagsInput tags={tags} setTags={setTags} />
                     <textarea
                       rows={6}
                       className="bg-gray-200"

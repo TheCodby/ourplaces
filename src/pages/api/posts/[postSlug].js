@@ -15,6 +15,7 @@ export default async function handler(req, res) {
       user: true,
     },
   });
+  console.log(post);
   if (post) {
     return res.status(200).json(post);
   } else {

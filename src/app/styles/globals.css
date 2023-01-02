@@ -36,6 +36,16 @@
     @apply hover:bg-gray-200;
     @apply focus:bg-gray-300;
   }
+  .tags-input {
+    @apply bg-gray-100;
+    @apply transition;
+    @apply duration-150;
+    @apply outline-none;
+    @apply p-2;
+    @apply rounded-md;
+    @apply hover:bg-gray-200;
+    @apply focus:bg-gray-300;
+  }
   .switches-list {
     grid-template-columns: min-content minmax(0%, 100%);
   }

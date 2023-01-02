@@ -32,6 +32,11 @@ export default async function PostPage({ params }) {
           <div className="flex flex-col space-y-4 basis-1/2">
             <span className="text-2xl">{post.title}</span>
             <span className="text-md">{post.description}</span>
+            <div className="flex flex-wrap text-sm gap-1">
+              {post.tags.map((tag) => (
+                <span className="text-blue-500">#{tag}</span>
+              ))}
+            </div>
           </div>
         </div>
       </div>

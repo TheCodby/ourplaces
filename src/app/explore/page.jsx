@@ -116,13 +116,11 @@ export default function Page() {
                 </div>
                 <hr className="my-3" />
                 <h2 className="text-sm xl:mr-10">{post.description}</h2>
-                {/* <div className="flex flex-wrap text-sm gap-1">
-                  <span className="text-blue-500">#Egypt</span>
-                  <span className="text-blue-500">#Pyramids</span>
-                  <span className="text-blue-500">#Lorem</span>
-                  <span className="text-blue-500">#Photographing</span>
-                  <span className="text-blue-500">#Pharaoh</span>
-                </div> */}
+                <div className="flex flex-wrap text-sm gap-1">
+                  {post.tags.map((tag) => (
+                    <span className="text-blue-500">#{tag}</span>
+                  ))}
+                </div>
               </div>
               <div className="flex flex-col">
                 <div className="flex justify-between flex-row-reverse text-sm mt-6">

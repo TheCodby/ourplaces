@@ -12,7 +12,7 @@ export default async function handler(req, res) {
       .json({ error: `Method '${req.method}' Not Allowed` });
   }
   try {
-    const { title, description, images } = JSON.parse(req.body);
+    const { title, description, images, tags } = JSON.parse(req.body);
     // check if slug avaliable, if not avaliable add Data.now() at the end of the slug.
     let slug = title.replace(" ", "-");
     const isSlugUsed = await prisma.Posts.findUnique({
@@ -26,6 +26,7 @@ export default async function handler(req, res) {
     const postData = {
       userId: session.userId,
       title,
+      tags,
       slug,
       description,
     };
