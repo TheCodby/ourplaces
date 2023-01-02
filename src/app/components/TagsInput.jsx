@@ -11,7 +11,10 @@ export default function TagsInput({ tags, setTags }) {
       onClick={() => inputRef.current.focus()}
     >
       {tags.map((tag, tagIndex) => (
-        <div className="bg-sky-500 p-2 rounded-3xl text-white flex flex-row space-x-2 items-center hover:cursor-default">
+        <div
+          className="bg-sky-500 p-2 rounded-3xl text-white flex flex-row space-x-2 items-center hover:cursor-default"
+          key={tagIndex}
+        >
           <span>#{tag}</span>
           <CiCircleRemove
             size={24}
