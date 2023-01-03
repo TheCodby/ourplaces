@@ -115,7 +115,11 @@ export default function Page() {
                   </span>
                 </div>
                 <hr className="my-3" />
-                <h2 className="text-sm xl:mr-10">{post.description}</h2>
+                <h2 className="text-sm xl:mr-10">
+                  {post.description.length > 200
+                    ? post.description.substring(0, 200) + "..."
+                    : post.description}
+                </h2>
                 <div className="flex flex-wrap text-sm gap-1">
                   {post.tags.map((tag, index) => (
                     <span className="text-blue-500" key={index}>

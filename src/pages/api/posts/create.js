@@ -43,7 +43,7 @@ export default async function handler(req, res) {
     });
     return res
       .status(200)
-      .json({ message: "Sucessfully create post", post_id: post.id });
+      .json({ message: "Sucessfully create post", slug: post.slug });
   } catch (e) {
     console.log(e);
     return res.status(400).json({ message: e });

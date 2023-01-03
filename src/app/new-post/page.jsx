@@ -8,6 +8,7 @@ import { Fragment, useReducer, useState } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import TagsInput from "../components/TagsInput";
+import { useRouter } from "next/navigation";
 const allowedMimes = ["image/jpeg", "image/png"];
 function reducer(state, action) {
   switch (action.type) {
@@ -29,6 +30,7 @@ export default function NewPostPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const router = useRouter();
   const upload = async (file) => {
     if (allowedMimes.includes(file.type)) {
       const imageUrl = URL.createObjectURL(file);
@@ -97,7 +99,10 @@ export default function NewPostPage() {
         }),
       }),
     });
-    const data = response.json();
+    const data = await response.json();
+    if (response.ok) {
+      router.push(`/posts/${data.slug}`);
+    }
     setIsLoading(false);
   };
   if (status === "authenticated") {
